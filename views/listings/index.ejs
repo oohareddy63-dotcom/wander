@@ -1,0 +1,332 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+/* Dashboard filter bar styling for category icons */
+#filters{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+/* Individual filter/category button styling */
+.filter{
+  text-align: center;
+  margin-right: 2rem;
+  margin-top: 1rem;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+/* Hover effects for better user interaction */
+.filter:hover{
+  opacity: 1;
+  transform: translateY(-2px);
+  background-color: #f8f9fa;
+}
+
+/* Category label styling */
+.filter p{
+  font-size: 0.8rem;
+  margin: 0.5rem 0 0 0;
+  font-weight: 500;
+}
+
+/* Active filter highlighting - shows current selection */
+.filter-active{
+  opacity: 1;
+  background-color: #fe424d;
+  color: white;
+  border-radius: 8px;
+}
+
+.filter-active:hover{
+  background-color: #e63946;
+}
+
+/* Tax toggle switch styling */
+.tax-info{
+  display: none;
+}
+
+.tax-toggle{
+  border: 1px solid #dee2e6;
+  border-radius: 1rem;
+  height: 3.2rem;
+  padding: 1rem;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  transition: all 0.2s ease;
+}
+
+.tax-toggle:hover{
+  background-color: #f8f9fa;
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+  #filters {
+    justify-content: center;
+  }
+  
+  .filter {
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tax-toggle {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+}
+</style>
+
+<!-- Category Filter Icons Section -->
+<div id="filters">
+  <!-- All Categories - Shows all listings -->
+  <div class="filter <%= currentFilter === 'all' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=all" class="text-decoration-none <%= currentFilter === 'all' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-solid fa-earth-asia fa-lg"></i></div>
+      <p>All</p>
+    </a>
+  </div>
+
+  <!-- Trending - Popular and featured listings (DEFAULT) -->
+  <div class="filter <%= (!currentFilter || currentFilter === 'trending') ? 'filter-active' : '' %>">
+    <a href="/listings?filter=trending" class="text-decoration-none <%= (!currentFilter || currentFilter === 'trending') ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-solid fa-fire fa-lg"></i></div>
+      <p>Trending</p>
+    </a>
+  </div>
+
+  <!-- Beach - Coastal and seaside properties -->
+  <div class="filter <%= currentFilter === 'beach' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=beach" class="text-decoration-none <%= currentFilter === 'beach' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-solid fa-umbrella-beach fa-lg"></i></div>
+      <p>Beach</p>
+    </a>
+  </div>
+
+  <!-- Rooms - Traditional hotel-style accommodations -->
+  <div class="filter <%= currentFilter === 'rooms' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=rooms" class="text-decoration-none <%= currentFilter === 'rooms' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-solid fa-bed fa-lg"></i></div>
+      <p>Rooms</p>
+    </a>
+  </div>
+
+  <!-- Iconic Cities - Urban destinations and city experiences -->
+  <div class="filter <%= currentFilter === 'iconic-cities' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=iconic-cities" class="text-decoration-none <%= currentFilter === 'iconic-cities' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-solid fa-mountain-city fa-lg"></i></div>
+      <p>Iconic Cities</p>
+    </a>
+  </div>
+
+  <!-- Mountains - Highland and mountainous locations -->
+  <div class="filter <%= currentFilter === 'mountains' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=mountains" class="text-decoration-none <%= currentFilter === 'mountains' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-solid fa-mountain fa-lg"></i></div>
+      <p>Mountains</p>
+    </a>
+  </div>
+
+  <!-- Castles - Historic and castle-like properties -->
+  <div class="filter <%= currentFilter === 'castles' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=castles" class="text-decoration-none <%= currentFilter === 'castles' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-brands fa-fort-awesome fa-lg"></i></div>
+      <p>Castles</p>
+    </a>
+  </div>
+
+  <!-- Amazing Pools - Properties with exceptional pool facilities -->
+  <div class="filter <%= currentFilter === 'amazing-pools' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=amazing-pools" class="text-decoration-none <%= currentFilter === 'amazing-pools' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-solid fa-person-swimming fa-lg"></i></div>
+      <p>Amazing pools</p>
+    </a>
+  </div>
+
+  <!-- Camping - Outdoor and camping experiences -->
+  <div class="filter <%= currentFilter === 'camping' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=camping" class="text-decoration-none <%= currentFilter === 'camping' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-solid fa-campground fa-lg"></i></div>
+      <p>Camping</p>
+    </a>
+  </div>
+
+  <!-- Farms - Rural and farm-stay experiences -->
+  <div class="filter <%= currentFilter === 'farms' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=farms" class="text-decoration-none <%= currentFilter === 'farms' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-solid fa-cow fa-lg"></i></div>
+      <p>Farms</p>
+    </a>
+  </div>
+
+  <!-- Arctic - Cold climate and winter destinations -->
+  <div class="filter <%= currentFilter === 'arctic' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=arctic" class="text-decoration-none <%= currentFilter === 'arctic' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-regular fa-snowflake fa-lg"></i></div>
+      <p>Arctic</p>
+    </a>
+  </div>
+
+  <!-- Domes - Unique dome-shaped accommodations -->
+  <div class="filter <%= currentFilter === 'domes' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=domes" class="text-decoration-none <%= currentFilter === 'domes' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-solid fa-igloo fa-lg"></i></div>
+      <p>Domes</p>
+    </a>
+  </div>
+
+  <!-- Boats - Watercraft and floating accommodations -->
+  <div class="filter <%= currentFilter === 'boats' ? 'filter-active' : '' %>">
+    <a href="/listings?filter=boats" class="text-decoration-none <%= currentFilter === 'boats' ? 'text-white' : 'text-dark' %>">
+      <div><i class="fa-solid fa-ship fa-lg"></i></div>
+      <p>Boats</p>
+    </a>
+  </div>
+
+  <!-- Tax Toggle Switch - Shows/hides tax information on prices -->
+  <div class="tax-toggle my-3">
+    <div class="form-check-reverse form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="taxSwitch"
+      />
+      <label class="form-check-label" for="taxSwitch">
+        Display total after taxes
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Category Filter Results Message -->
+<% if (typeof noCategoryResults !== "undefined" && noCategoryResults) { %>
+  <div class="alert alert-warning mt-3" role="alert">
+    <i class="fa-solid fa-exclamation-triangle me-2"></i>
+    No listings found in this category. Showing trending listings instead.
+  </div>
+<% } %>
+
+<!-- Search Results Information -->
+<% if (searchTerm && searchTerm.trim() !== "") { %>
+  <div class="alert alert-info mt-3" role="alert">
+    <i class="fa-solid fa-search me-2"></i>
+    <% if (allListings.length > 0) { %>
+      Found <%= allListings.length %> result<%= allListings.length === 1 ? '' : 's' %> for "<strong><%= searchTerm %></strong>"
+    <% } else { %>
+      No results found for "<strong><%= searchTerm %></strong>". Try a different search term.
+    <% } %>
+  </div>
+<% } %>
+
+<!-- Listings Grid Display -->
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4 mt-3">
+  <% if (allListings.length === 0) { %>
+    <!-- Empty state when no listings match current filters -->
+    <div class="col-12 text-center text-muted mt-5">
+      <i class="fa-solid fa-search fa-3x mb-3 opacity-50"></i>
+      <% if (searchTerm && searchTerm.trim() !== "") { %>
+        <h4>No results found for "<%= searchTerm %>"</h4>
+        <p>Try searching for different keywords like "beach", "mountain", "city", or specific locations</p>
+        <div class="mt-3">
+          <a href="/listings?filter=trending" class="btn btn-primary me-2">View Trending</a>
+          <a href="/listings?filter=beach" class="btn btn-outline-primary">Browse Beach</a>
+        </div>
+      <% } else { %>
+        <h4>No listings found in this category</h4>
+        <p>Try selecting a different category or use the search bar</p>
+        <a href="/listings?filter=trending" class="btn btn-primary">View Trending Listings</a>
+      <% } %>
+    </div>
+  <% } else { %>
+    <!-- Listing Cards - Each card represents one property -->
+    <% for (let listing of allListings) { %>
+      <div class="col listing-card">
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+          <div class="card h-100 shadow-sm">
+            <!-- Property Image -->
+            <img
+              src="<%= listing.image?.url || 'https://via.placeholder.com/300x200?text=No+Image' %>"
+              class="card-img-top"
+              alt="<%= listing.title %> - Property Image"
+              style="height: 200px; object-fit: cover;"
+            >
+
+            <!-- Card Overlay for Hover Effects -->
+            <div class="card-img-overlay"></div>
+
+            <!-- Property Details -->
+            <div class="card-body">
+              <p class="card-text">
+                <!-- Property Title -->
+                <b><%= listing.title %></b><br>
+                
+                <!-- Location Information -->
+                <small class="text-muted">
+                  <i class="fa-solid fa-location-dot me-1"></i>
+                  <%= listing.location %>, <%= listing.country %>
+                </small><br>
+                
+                <!-- Price Display with Currency Formatting -->
+                <span class="fw-bold text-success">
+                  <%= listing.price.toLocaleString('en-IN', {
+                    style: 'currency',
+                    currency: 'INR'
+                  }) %> / night
+                </span>
+                
+                <!-- Tax Information (Hidden by Default) -->
+                <i class="tax-info text-muted"> &nbsp; &nbsp;+18% GST</i>
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% } %>
+  <% } %>
+</div>
+
+<script>
+  // Tax Toggle Functionality
+  // Shows/hides GST information on all listing cards
+  const taxSwitch = document.getElementById("taxSwitch");
+  if (taxSwitch) {
+    taxSwitch.addEventListener("click", () => {
+      const taxInfo = document.getElementsByClassName("tax-info");
+      for (const info of taxInfo) {
+        // Toggle display between none and inline
+        info.style.display = info.style.display !== "inline" ? "inline" : "none";
+      }
+    });
+  }
+
+  // Optional: Add loading states for better UX
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add click handlers for filter links to show loading state
+    const filterLinks = document.querySelectorAll('.filter a');
+    filterLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        // Add loading indicator
+        const icon = this.querySelector('i');
+        const originalClass = icon.className;
+        icon.className = 'fa-solid fa-spinner fa-spin fa-lg';
+        
+        // Restore original icon after a short delay (in case of quick navigation)
+        setTimeout(() => {
+          icon.className = originalClass;
+        }, 1000);
+      });
+    });
+  });
+</script>

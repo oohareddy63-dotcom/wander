@@ -1,0 +1,121 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+<div class="container mt-4">
+  <h3>Edit Your Listing</h3>
+
+  <form method="POST" action="/listings/<%= listing._id %>?_method=PUT"
+    novalidate class= "needs-validation"
+    enctype="multipart/form-data">
+
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input
+        name="listing[title]"
+        value="<%= listing.title %>"
+        type="text"
+        class="form-control"
+        required
+      />
+       <div class="valid-feedback">Title looks good!</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea
+        name="listing[description]"
+        class="form-control"
+        rows="3"
+        required
+      ><%= listing.description %></textarea>
+        <div class="invalid-feedback">Please enter short description</div>
+    </div>
+
+    <!-- Category select so that existing listings can be assigned
+         to a dashboard filter. Falls back to "trending" if missing. -->
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <select
+        name="listing[category]"
+        class="form-select"
+        required
+      >
+        <% const category = listing.category || "trending"; %>
+        <option value="trending" <%= category === "trending" ? "selected" : "" %>>Trending</option>
+        <option value="beach" <%= category === "beach" ? "selected" : "" %>>Beach</option>
+        <option value="rooms" <%= category === "rooms" ? "selected" : "" %>>Rooms</option>
+        <option value="iconic-cities" <%= category === "iconic-cities" ? "selected" : "" %>>Iconic Cities</option>
+        <option value="mountains" <%= category === "mountains" ? "selected" : "" %>>Mountains</option>
+        <option value="castles" <%= category === "castles" ? "selected" : "" %>>Castles</option>
+        <option value="amazing-pools" <%= category === "amazing-pools" ? "selected" : "" %>>Amazing pools</option>
+        <option value="camping" <%= category === "camping" ? "selected" : "" %>>Camping</option>
+        <option value="farms" <%= category === "farms" ? "selected" : "" %>>Farms</option>
+        <option value="arctic" <%= category === "arctic" ? "selected" : "" %>>Arctic</option>
+        <option value="domes" <%= category === "domes" ? "selected" : "" %>>Domes</option>
+        <option value="boats" <%= category === "boats" ? "selected" : "" %>>Boats</option>
+      </select>
+      <div class="invalid-feedback">Please choose a category</div>
+    </div>
+
+       <div class="mb-3">
+        Original Listing Image<br/>
+    <img src="<%= listing.image?.url || '' %>" alt="Listing Image" class="img-fluid">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Upload New Image </label>
+      <input
+        name="listing[image]"
+     
+        type="file"
+        class="form-control"
+      
+      />
+    </div>
+
+    <div class="row">
+    <div class="mb-3 col-md-4">
+      <label class="form-label">Price</label>
+      <input
+        name="listing[price]"
+        value="<%= listing.price %>"
+        type="number"
+        class="form-control"
+        required
+      />
+       <div class="invalid-feedback"> Price should be valid</div>
+    </div>
+
+    <div class="mb-3 col-md-8">
+      <label class="form-label">Country</label>
+      <input
+        name="listing[country]"
+        value="<%= listing.country %>"
+        type="text"
+        class="form-control"
+        required
+      />
+       <div class="invalid-feedback">Country name should be valid</div>
+    </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Location</label>
+      <input
+        name="listing[location]"
+        value="<%= listing.location %>"
+        type="text"
+        class="form-control"
+        required
+      />
+       <div class="invalid-feedback">Location name should be valid</div>
+    </div>
+
+    <button class="btn edit-btn mt-3">Edit</button>
+
+
+  </form>
+</div>
+</div>
+</div>
+<script src="/js/script.js"></script>

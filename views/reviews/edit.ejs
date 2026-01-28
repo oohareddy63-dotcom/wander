@@ -1,0 +1,55 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h4 class="mb-3">
+        Edit your review for
+        <span class="text-primary"><%= listing.title %></span>
+      </h4>
+
+      <!-- Single edit form – middleware ensures each review is only edited once -->
+      <form
+        action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=PUT"
+        method="POST"
+        class="needs-validation"
+        novalidate
+      >
+        <div class="mb-3">
+          <label class="form-label">Rating</label>
+          <input
+            type="number"
+            name="review[rating]"
+            min="1"
+            max="5"
+            value="<%= review.rating %>"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">
+            Please provide a rating between 1 and 5.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Comment</label>
+          <textarea
+            name="review[comment]"
+            rows="4"
+            class="form-control"
+            required
+          ><%= review.comment %></textarea>
+          <div class="invalid-feedback">
+            Comment cannot be empty.
+          </div>
+        </div>
+
+        <button class="btn btn-dark">Save changes</button>
+        <a href="/listings/<%= listing._id %>" class="btn btn-outline-secondary ms-2">
+          Cancel
+        </a>
+      </form>
+    </div>
+  </div>
+</div>
+
