@@ -201,26 +201,5 @@ wander/
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 License
-
-This project is licensed under the ISC License.
-
-## 🆘 Support
-
-For support and questions:
-- Create an issue in the repository
-- Check existing documentation
-- Review the code comments for detailed explanations
-
-## 🔄 Future Enhancements
-
-- Advanced search filters
-- Booking calendar system
-- Payment integration
-- User profiles
-- Social sharing features
-- Mobile app development
-
----
 
 **Built with ❤️ for travel enthusiasts**
