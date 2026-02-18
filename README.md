@@ -118,10 +118,6 @@ wander/
 - `CLOUDINARY_*`: Cloudinary configuration for image uploads
 - `MAPBOX_ACCESS_TOKEN`: Mapbox token for geolocation services
 
-### Database Configuration
-- Default MongoDB connection: `mongodb://127.0.0.1:27017/wander`
-- Modify `dbUrl` in `app.js` for different database configurations
-
 ## 🌐 API Endpoints
 
 ### Authentication
