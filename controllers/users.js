@@ -7,7 +7,6 @@ module.exports.renderSignup = (req, res) => {
     currentUser: res.locals.currentUser || null,
   });
 };
-
 module.exports.signup = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
@@ -26,7 +25,6 @@ module.exports.signup = async (req, res, next) => {
     res.redirect("/signup");
   }
 };
-
 module.exports.renderLoginForm = (req, res) => {
   res.render("users/login", {
     success: res.locals.success || [],
@@ -34,13 +32,11 @@ module.exports.renderLoginForm = (req, res) => {
     currentUser: res.locals.currentUser || null,
   });
 };
-
 module.exports.login = (req, res) => {
   req.flash("success", "Welcome back to Wanderlust!");
   const redirectUrl = res.locals.redirectUrl || "/listings";
   res.redirect(redirectUrl);
 };
-
 module.exports.logout = (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
