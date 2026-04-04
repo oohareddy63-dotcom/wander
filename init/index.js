@@ -5,14 +5,12 @@ const Listing = require("../models/listing.js");
 
 //  USE ENV VARIABLE (Render + Local)
 const dbUrl = process.env.DATABASE_URL;
-
 async function main() {
   await mongoose.connect(dbUrl, {
     serverSelectionTimeoutMS: 30000,
   });
   console.log("Connected to DB");
 }
-
 main().catch((err) => console.log("DB ERROR:", err));
 
 const initDB = async () => {
