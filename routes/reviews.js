@@ -4,7 +4,7 @@ const router = express.Router({ mergeParams: true });
 const wrapAsync = require("../utils/wrapAsync");
 const {
   isLoggedIn,
-  validateReview,
+  validateReview ,
   isReviewAuthor,
   canEditReviewOnce,
 } = require("../middleware");
