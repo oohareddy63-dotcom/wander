@@ -10,7 +10,6 @@ const reviewSchema = new Schema({
     type: Number,
     min: 1,
     max: 5,
-    
     required: true,
   },
   createdAt: {
