@@ -16,7 +16,6 @@ module.exports.index = async (req, res) => {
       { description: { $regex: searchTerm, $options: "i" } }
     ];
   }
-
   const selectedFilter = filter || "trending";
 
   if ((!search || search.trim() === "") && selectedFilter !== "all") {
