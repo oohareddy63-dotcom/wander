@@ -8,6 +8,7 @@ const sampleListings = [
     },
     
     price: 2500,
+    
     location: "Florence",
     country: "Italy",
     category: "trending",
