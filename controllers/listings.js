@@ -18,16 +18,13 @@ module.exports.index = async (req, res) => {
   if ((!search || search.trim() === "") && selectedFilter !== "all") {
     mongoQuery.category = selectedFilter.toLowerCase();
   }
-
   let allListings = await Listing.find(mongoQuery);
   let noCategoryResults = false;
-
   if (allListings.length === 0 && (!search || search.trim() === "") && selectedFilter !== "all") {
     noCategoryResults = true;
     mongoQuery.category = "trending";
     allListings = await Listing.find(mongoQuery);
   }
-
   res.render("listings/index", {
     allListings,
     searchTerm: search || "",
@@ -38,7 +35,6 @@ module.exports.index = async (req, res) => {
     currentUser: res.locals.currentUser || null,
   });
 };
-
 module.exports.renderNewForm = (req, res) => {
   res.render("listings/new", {
     success: res.locals.success || [],
@@ -46,7 +42,6 @@ module.exports.renderNewForm = (req, res) => {
     currentUser: res.locals.currentUser || null,
   });
 };
-
 module.exports.showListing = async (req, res) => {
   const { id } = req.params;
 
