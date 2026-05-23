@@ -15,7 +15,6 @@ module.exports.index = async (req, res) => {
     ];
   }
   const selectedFilter = filter || "trending";
-
   if ((!search || search.trim() === "") && selectedFilter !== "all") {
     mongoQuery.category = selectedFilter.toLowerCase();
   }
