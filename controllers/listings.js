@@ -4,7 +4,6 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 module.exports.index = async (req, res) => {
   const { search, filter } = req.query;
-
   const mongoQuery = {};
 
   if (search && search.trim() !== "") {
