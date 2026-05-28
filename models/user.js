@@ -12,7 +12,6 @@ const userSchema = new Schema({
     enum: ["user", "editor"],
     default: "user",
   },
-  
 });
 userSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model("User", userSchema);
