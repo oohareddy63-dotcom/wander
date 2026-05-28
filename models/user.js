@@ -9,7 +9,6 @@ const userSchema = new Schema({
   },
   
   role: {
-    
     type: String,
     enum: ["user", "editor"],
     default: "user",
