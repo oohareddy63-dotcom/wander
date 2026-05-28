@@ -3,12 +3,10 @@ const Schema = mongoose.Schema;
 const Review = require("./review");
 const listingSchema = new Schema({
   title: {
-    type: String,
-    
+    type: String, 
     required: true,
   },
   description: String,
-
   category: {
     type: String,
     enum: [
