@@ -145,7 +145,6 @@ const sampleListings = [
     country: "Spain",
     category: "iconic-cities",
   },
-
   {
     title: "Mountain Retreat in Aspen",
     description: "Unplug and unwind in this peaceful mountain cabin. Surrounded by nature, it's a perfect place to recharge.",
@@ -330,7 +329,6 @@ const sampleListings = [
     country: "United States",
     category: "farms",
   },
-
   {
     title: "Arctic Glass Igloo in Finland",
     description: "Sleep under the Northern Lights in this heated glass igloo in the Finnish Lapland.",
