@@ -11,7 +11,6 @@ const sampleListings = [
     country: "Italy",
     category: "trending",
   },
-  
   {
     title: "Luxury Penthouse with City Views",
     description: "Indulge in luxury living with panoramic city views from this stunning penthouse apartment.",
